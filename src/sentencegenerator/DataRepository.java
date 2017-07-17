@@ -8,20 +8,23 @@ import java.util.Scanner;
 /**
  * Created by Zane Kalva
  */
-public class DataRepository
-{
+public class DataRepository {
 
 	String[] lines;
 
-	DataRepository() {
-		populateFromFile();
+	DataRepository(final String fileName) {
+		populateFromFile(fileName);
 	}
 
-	public void populateFromFile ()
+	public String[] getLines() {
+		return lines;
+	}
+
+	public void populateFromFile (final String fileName)
 	{
 		try
 		{
-			File file = new File("resources/input.txt");
+			File file = new File(fileName);
 			Scanner input = new Scanner(file);
 
 			lines = new String[10000];
