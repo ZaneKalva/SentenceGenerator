@@ -1,7 +1,6 @@
 package sentencegenerator;
 
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Created by Zane Kalva
@@ -10,7 +9,7 @@ public class Bag {
     private HashMap<String, Integer> data;
     private int size;
 
-    public Bag(){
+    public Bag() {
         data = new HashMap<String, Integer>();
     }
 
@@ -18,7 +17,7 @@ public class Bag {
         return size;
     }
 
-    public void add(String letter) {
+    public void add(final String letter) {
         size++;
         if (data.containsKey(letter)) {
             int num = data.get(letter);
@@ -28,12 +27,11 @@ public class Bag {
         }
     }
 
-
     public String getNextLetterByPropability() {
-        int num = (int)(Math.random()*getSize());
-
+        int num = (int) (Math.random() * getSize());
         int sum = 0;
-        for (String letter:data.keySet()) {
+
+        for (String letter : data.keySet()) {
             sum += data.get(letter);
             if (num < sum) return letter;
         }

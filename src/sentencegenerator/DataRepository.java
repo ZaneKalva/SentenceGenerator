@@ -2,48 +2,39 @@ package sentencegenerator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-
 
 /**
  * Created by Zane Kalva
  */
 public class DataRepository {
 
-	String[] lines;
+    private List<String> lineList;
 
-	DataRepository(final String fileName) {
-		populateFromFile(fileName);
-	}
+    DataRepository(final String fileName) {
+        populateFromFile(fileName);
+    }
 
-	public String[] getLines() {
-		return lines;
-	}
+    public List<String> getLineList() {
+        return lineList;
+    }
 
-	public void populateFromFile (final String fileName)
-	{
-		try
-		{
-			File file = new File(fileName);
-			Scanner input = new Scanner(file);
+    public void populateFromFile(final String fileName) {
+        try {
+            File file = new File(fileName);
+            Scanner input = new Scanner(file);
 
-			lines = new String[10000];
-			int counter = 0;
-			while (input.hasNext())
-			{
-				//String nextToken = input.next();
-				//or to process line by line
-				final String line = input.nextLine();
-				lines[counter] = line.substring(line.lastIndexOf("\t")+1);
-				counter++;
-			}
-			input.close();
-		}
-		catch (final FileNotFoundException exception)
-		{
-			System.out.println("FileNotFound: " + exception);
-		}
-
-	}
-
+            lineList = new ArrayList<String>();
+            int counter = 0;
+            while (input.hasNext()) {
+                final String line = input.nextLine();
+                lineList.add(line.substring(line.lastIndexOf("\t") + 1));
+            }
+            input.close();
+        } catch (final FileNotFoundException exception) {
+            System.err.println("FileNotFound: " + exception);
+        }
+    }
 }

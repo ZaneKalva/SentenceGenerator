@@ -3,3 +3,4 @@
 .idea/
 SentenceGenerator.iml
 /out
+resources/input1M.txt
